@@ -2,21 +2,30 @@ import "./App.css";
 import ProductCardContainer from "./components/ProductCardContainer";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import ProductCard from "./components/ProductCard";
+import { useState } from "react";
 
-function App() {
+export default function App() {
+  const [itemsInCart, setItemsInCart] = useState(0);
+  const handleAddToCartClick = () => {
+    setItemsInCart(itemsInCart + 1);
+    alert(`you added ${itemsInCart + 1}`);
+  };
   return (
     <main className="store">
-      <NavBar user={user} />
-      <ProductCardContainer products={products} />
+      <NavBar user={user} itemsInCart={itemsInCart} />
+      <ProductCardContainer
+        products={products}
+        handleAddToCartClick={handleAddToCartClick}
+      />
       <Footer />
     </main>
   );
 }
-export default App;
 
 const user = {
   firstName: "Olivia",
-  lastName: "Parker",
+  lastName: "Batman",
   itemsInCart: 0,
 };
 
